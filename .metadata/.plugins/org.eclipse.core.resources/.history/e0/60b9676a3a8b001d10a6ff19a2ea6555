@@ -1,0 +1,21 @@
+package kr.go.molab.service;
+
+public class UserDeniedHandler implements AccessDeniedHandler {
+    //사용권한이 없을 때 지정한 페이지로 이동
+    //관리자기능의 일반 사용자가 접근할때 에러를 출력하는 코드
+    //security-context에 access-denied-handler로 설정되어있기 때문에 자동적으로 호출이 된다.
+    @Override
+    public void handle(HttpServletRequest req
+            , HttpServletResponse res, AccessDeniedException ade)
+            throws IOException, ServletException { 
+        req.setAttribute("errMsg", 
+                "관리자만 사용할 수 있는 기능입니다.");
+        
+        //위의 경고메시지를 출력하고 denied.jsp로 강제로 이동하게 한다.
+        String url="/WEB-INF/views/user/denied.jsp";
+        RequestDispatcher rd=req.getRequestDispatcher(url);
+        rd.forward(req, res);
+//        req.getRequestDispatcher(
+//                "/WEB-INF/views/user/denied.jsp").forward(req, res);
+    }
+}

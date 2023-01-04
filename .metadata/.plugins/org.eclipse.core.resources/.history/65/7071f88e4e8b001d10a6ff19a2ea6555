@@ -1,0 +1,8 @@
+package kr.go.molab.util;
+
+public class FileManagerEx {
+	public static void main(String[] args) {
+		FileManager f1 = new FileManager();
+		f1.fileWriter("/msg/");
+	}
+}

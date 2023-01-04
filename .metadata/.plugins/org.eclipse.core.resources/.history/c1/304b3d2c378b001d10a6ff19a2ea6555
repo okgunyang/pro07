@@ -1,0 +1,27 @@
+package kr.go.molab.dto;
+
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.GrantedAuthority;
+
+public class UserDTO implements User {
+	private String userid;
+	private String username;
+	private String email;
+	private String tel;
+	private String regdate;
+	
+	public UserDTO(String userid, String passwd, String username,
+			String email, String tel,
+			Collection<? extends GrantedAuthority> authorities,
+            String regdate,
+            boolean enabled,
+            boolean accountNonExpired,
+            boolean credentialsNonExpired, 
+            boolean accountNonLocked) {
+         
+        super(username, passwd, enabled, accountNonExpired
+                ,credentialsNonExpired, accountNonLocked, authorities);
+        
+        this.userid = userid;
+    }
+}

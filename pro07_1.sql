@@ -11,3 +11,23 @@ insert into sample values('cho', '2222');
 insert into sample values('jeong', '3333');
 
 commit;
+
+drop table user;
+
+create table user(userid varchar(20) primary key,
+passwd varchar(300) not null,
+username varchar(100) not null,
+email varchar(100),
+tel varchar(20),
+authority varchar(20) not null,
+regdate datetime default now(),
+enabled int default 1
+);
+
+create table attach(UUID varchar(50) not null, 
+uploadpath varchar(100), 
+filename varchar(200), 
+filetype varchar(1) default "O", 
+bno int);
+
+

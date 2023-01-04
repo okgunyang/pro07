@@ -1,0 +1,19 @@
+package kr.go.molab.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+public class UserDTO {
+	private int seq;
+	private String userid;
+	private String passwd;
+	private String username;
+	private String email;
+	private String tel;
+	private String authority;
+	private String regdate;
+	private int enabled;
+}

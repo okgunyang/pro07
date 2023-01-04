@@ -12,6 +12,7 @@
 		<org.springframework-version>5.0.8.RELEASE</org.springframework-version>
 		<org.aspectj-version>1.8.10</org.aspectj-version>
 		<org.slf4j-version>1.7.25</org.slf4j-version>
+		<spring.security.version>5.6.2</spring.security.version>
 	</properties>
 	<dependencies>
 		<!-- Spring -->
@@ -122,7 +123,23 @@
 		    <artifactId>spring-test</artifactId>
 		    <version>5.0.8.RELEASE</version>
 		</dependency>
-				      
+		
+		<!-- jUnit5 -->
+		<dependency>
+		  <groupId>org.junit.jupiter</groupId>
+		  <artifactId>junit-jupiter-api</artifactId>
+		  <version>5.7.0</version>
+		  <scope>test</scope>
+		</dependency>
+		
+		<!-- mockito -->
+		<dependency>
+		  <groupId>org.mockito</groupId>
+		  <artifactId>mockito-junit-jupiter</artifactId>
+		  <version>3.2.4</version>
+		  <scope>test</scope>
+		</dependency>
+
 		<!-- maven-war-plugin -->
 		<dependency>
 		    <groupId>org.apache.maven.plugins</groupId>
@@ -252,24 +269,38 @@
 		    <version>1.9.13</version>
 		</dependency>
 						
-		<!-- spring-security-core -->
+		<!-- spring-security
 		<dependency>
 		    <groupId>org.springframework.security</groupId>
 		    <artifactId>spring-security-core</artifactId>
-		    <version>5.0.8.RELEASE</version>
+		    <version>${spring.security.version}</version>
 		</dependency>
-		<!-- spring-security-web -->
 		<dependency>
 		    <groupId>org.springframework.security</groupId>
 		    <artifactId>spring-security-web</artifactId>
-		    <version>5.0.8.RELEASE</version>
+		    <version>${spring.security.version}</version>
 		</dependency>
-		<!-- spring-security-config -->
 		<dependency>
 		    <groupId>org.springframework.security</groupId>
 		    <artifactId>spring-security-config</artifactId>
-		    <version>5.0.8.RELEASE</version>
-		</dependency>						
+		    <version>${spring.security.version}</version>
+		</dependency>	 -->
+		<!-- spring-security-taglibs					
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-taglibs</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-test</artifactId>
+		    <version>${spring.security.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>au.com.dius.pact.provider</groupId>
+		    <artifactId>spring</artifactId>
+		    <version>4.3.2</version>
+		</dependency> -->
 		
 		<!-- commons-fileupload -->
 		<dependency>
@@ -283,6 +314,13 @@
 		    <artifactId>commons-io</artifactId>
 		    <version>2.4</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/servlets.com/cos -->
+		<dependency>
+		    <groupId>servlets.com</groupId>
+		    <artifactId>cos</artifactId>
+		    <version>05Nov2002</version>
+		</dependency>
+				
 		<!-- imgscalr-lib -->
 		<dependency>
 		    <groupId>org.imgscalr</groupId>

@@ -1,0 +1,51 @@
+package kr.go.molab.util;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
+import kr.go.molab.dto.UserDTO;
+
+public class UserAuthenticationService implements UserDetailsService {
+	
+    private SqlSessionTemplate sqlSession;
+    public UserAuthenticationService() {     }
+    public UserAuthenticationService(
+        SqlSessionTemplate sqlSession) {
+        this.sqlSession=sqlSession;
+    }
+    
+	@Override
+	public UserDetails loadUserByUsername(String userid) throws UsernameNotFoundException {
+        //사용자 아이디 확인 (mapper에서 map에 담아 전달된 사용자의 데이터)
+        Map<String,Object> user = sqlSession.selectOne("user.selectUser", userid);
+        
+        //해당 아이디를 가진 사용자가 없으면 예외 발생
+        if(user==null) throw new UsernameNotFoundException(userid);
+        
+        //사용권한 목록
+        List<GrantedAuthority> authority = new ArrayList<>();
+        
+        //(Integer)Integer.valueOf(user.get("ENABLED").toString()) == 1
+        
+	    authority.add(new SimpleGrantedAuthority(user.get("AUTHORITY").toString())); 
+		    //필드명은 대문자로
+	        //1과 같으면 사용가능한 계정이고, 0이면 사용불가능한 계정이다.	                
+	        //ENABLED는 1이라는 의미
+        return new UserDTO(user.get("USERID").toString(),
+                user.get("PASSWORD").toString(), user.get("USERNAME").toString(),
+                user.get("EMAIL").toString(), user.get("TEL").toString(),
+                authority,
+                user.get("REGDATE").toString(),
+                (Integer)Integer.valueOf(user.get("ENABLED").toString())==1, true, true, true,
+                user.get("USERID").toString()
+                );
+    }
+}
