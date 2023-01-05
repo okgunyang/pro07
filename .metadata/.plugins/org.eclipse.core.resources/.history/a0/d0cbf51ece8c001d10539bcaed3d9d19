@@ -1,0 +1,13 @@
+package kr.go.molab;
+
+import java.util.Map;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class RestService {
+
+	public Map<String, String> getTest(String id, String pw){
+		
+	}
+}

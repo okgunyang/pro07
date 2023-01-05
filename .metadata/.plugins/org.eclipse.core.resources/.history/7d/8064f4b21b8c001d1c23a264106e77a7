@@ -1,0 +1,19 @@
+package kr.go.molab;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import spring.di.entity.*;
+
+public class Test {
+	public static void main(String[] args)
+	  {
+	    ApplicationContext context = new ClassPathXmlApplicationContext("spring/di/setting1.xml");
+
+	    // bean의 id 값으로 참조 (타입캐스팅 해주어야함)
+	    ExamConsole console = (ExamConsole) context.getBean("console");
+
+	    // 위의 방법 또는 클래스타입으로 받을 수 있다.
+	    ExamConsole console = context.getBean(ExamConsole.class);
+	    console.print();
+	  }
+}

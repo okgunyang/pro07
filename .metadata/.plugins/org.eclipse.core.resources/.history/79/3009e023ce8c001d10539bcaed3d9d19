@@ -1,0 +1,16 @@
+package kr.go.molab;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class RestService {
+
+	public Map<String, String> getTest(String id, String pw){
+		Map<String, String> res = new HashMap<>();
+		res.put(id, pw);
+		return res;
+	}
+}

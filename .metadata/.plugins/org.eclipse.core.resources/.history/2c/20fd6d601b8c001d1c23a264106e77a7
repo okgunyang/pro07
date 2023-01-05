@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+  <!-- Exam exam = new Exam();  -->
+  <bean id="exam" class="spring.di.entity.Exam">
+    <!-- 오버로드 생성자를 통해 주입 -->
+    <constructor-arg value="30"/>
+    <constructor-arg value="40"/>
+    <constructor-arg value="20"/>
+    <constructor-arg value="20"/>
+  </bean> 
+
+  <!-- ExamConsole console = new InlinExamConsole();  -->
+  <bean id="console" class="spring.di.ui.InlineExamConsole">
+    <!-- 오버로드 생성자를 통해 주입 -->
+    <constructor-arg name="exam" ref="exam" />
+  </bean>
+</beans>

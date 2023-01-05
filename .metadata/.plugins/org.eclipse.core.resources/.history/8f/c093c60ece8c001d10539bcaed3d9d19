@@ -1,0 +1,8 @@
+package kr.go.molab;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class RestService {
+
+}
