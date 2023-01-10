@@ -1,0 +1,7 @@
+package kr.go.molab.service;
+
+import kr.go.molab.model.Account;
+
+public interface AccountService {
+	void join (Account account);
+}

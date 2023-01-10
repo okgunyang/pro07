@@ -24,10 +24,22 @@ regdate datetime default now(),
 enabled int default 1
 );
 
+desc user;
+
+CREATE TABLE ACCOUNT (
+    id varchar(100) primary key,
+    password varchar(300),
+    email varchar(100),
+    phone varchar(20),
+    role varchar(20)
+);
+
 create table attach(UUID varchar(50) not null, 
 uploadpath varchar(100), 
 filename varchar(200), 
 filetype varchar(1) default "O", 
 bno int);
+
+select * from attach;
 
 

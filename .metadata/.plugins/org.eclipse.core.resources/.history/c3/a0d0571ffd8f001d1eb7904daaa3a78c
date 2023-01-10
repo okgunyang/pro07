@@ -1,0 +1,15 @@
+package kr.go.molab.security;
+
+import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.userdetails.User;
+import kr.go.molab.model.Account;
+
+public class SecurityAccount extends User {
+	  public SecurityAccount(Account account) {
+		    super(
+		      account.getId(),
+		      account.getPassword(),
+		      AuthorityUtils.createAuthorityList(account.getRole())
+		    );
+		  }
+}

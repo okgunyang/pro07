@@ -1,0 +1,11 @@
+package kr.go.molab.mapper;
+
+import org.apache.ibatis.annotations.Mapper;
+
+import kr.go.molab.security.Account;
+
+@Mapper
+public interface AccountMapper {
+	  Account getAccountById(String id);
+	  void insertAccount(Account account);
+}

@@ -1,0 +1,5 @@
+package kr.go.molab.aop;
+
+public class LogAdvisorJava {
+
+}

@@ -43,8 +43,29 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="kr.go.molab" />
-		
-	<!-- 하단에 인터셉터 추가 -->
 	
+	<!-- <beans:bean id="springSecurityFilterChain" class="org.springframework.web.filter.DelegatingFilterProxy"/> -->	
+	<!-- 하단 또는 security에 인터셉터 추가 -->
+	<beans:bean id="sampleInterceptor" class="kr.go.molab.util.SampleInterceptor" />
+	<beans:bean id="loginInterceptor" class="kr.go.molab.util.LoginCheckInterceptor" />
+	<beans:bean id="adminInterceptor" class="kr.go.molab.util.AdminInterceptor" />
+	<interceptors>
+		<interceptor>
+            <mapping path="/data/**" />
+            <beans:ref bean="sampleInterceptor" />
+        </interceptor>
+        <interceptor>
+            <mapping path="/qna/write.do" />
+            <mapping path="/qna/insert.do" />
+            <mapping path="/qna/update.do" />
+            <mapping path="/qna/delete.do" />
+            <beans:ref bean="loginInterceptor"/>
+        </interceptor>
+        <interceptor>
+            <mapping path="/notice/insert.do"/>
+            <mapping path="/notice/update.do"/>
+            <beans:ref bean="adminInterceptor" />
+        </interceptor>
+	</interceptors>
 	
 </beans:beans>

@@ -1,0 +1,17 @@
+package kr.go.molab.model;
+
+import lombok.Data;
+
+@Data
+public class Account {
+	private String userid;
+	private String passwd;
+	private String passwd2;
+	private String username;
+	private String email;
+	private String tel;
+	private String authority;
+	private String regdate;
+	private int enabled;
+	
+}

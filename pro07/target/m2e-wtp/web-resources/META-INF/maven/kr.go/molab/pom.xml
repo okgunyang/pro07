@@ -12,7 +12,6 @@
 		<org.springframework-version>5.0.8.RELEASE</org.springframework-version>
 		<org.aspectj-version>1.8.10</org.aspectj-version>
 		<org.slf4j-version>1.7.25</org.slf4j-version>
-		<spring.security.version>5.6.2</spring.security.version>
 	</properties>
 	<dependencies>
 		<!-- Spring -->
@@ -39,7 +38,19 @@
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjrt</artifactId>
 			<version>${org.aspectj-version}</version>
-		</dependency>	
+		</dependency>
+		<!-- aspectjweaver 추가 -->	
+		<dependency>
+		  <groupId>org.aspectj</groupId>
+		  <artifactId>aspectjweaver</artifactId>
+		  <version>${org.aspectj-version}</version>
+		</dependency>
+		<!-- spring-aop 추가 -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-aop</artifactId>
+		    <version>5.0.8.RELEASE</version>
+		</dependency>
 		
 		<!-- Logging -->
 		<dependency>
@@ -275,38 +286,28 @@
 		    <version>1.9.13</version>
 		</dependency>
 						
-		<!-- spring-security
+		<!-- spring-security -->
 		<dependency>
 		    <groupId>org.springframework.security</groupId>
 		    <artifactId>spring-security-core</artifactId>
-		    <version>${spring.security.version}</version>
+		    <version>${org.springframework-version}</version>
 		</dependency>
 		<dependency>
 		    <groupId>org.springframework.security</groupId>
 		    <artifactId>spring-security-web</artifactId>
-		    <version>${spring.security.version}</version>
+		    <version>${org.springframework-version}</version>
 		</dependency>
 		<dependency>
 		    <groupId>org.springframework.security</groupId>
 		    <artifactId>spring-security-config</artifactId>
-		    <version>${spring.security.version}</version>
-		</dependency>	 -->
-		<!-- spring-security-taglibs					
+		    <version>${org.springframework-version}</version>
+		</dependency>
+		<!-- spring-security-taglibs -->					
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-taglibs</artifactId>
-			<version>${spring.security.version}</version>
+			<version>${org.springframework-version}</version>
 		</dependency>
-		<dependency>
-		    <groupId>org.springframework.security</groupId>
-		    <artifactId>spring-security-test</artifactId>
-		    <version>${spring.security.version}</version>
-		</dependency>
-		<dependency>
-		    <groupId>au.com.dius.pact.provider</groupId>
-		    <artifactId>spring</artifactId>
-		    <version>4.3.2</version>
-		</dependency> -->
 		
 		<!-- commons-fileupload -->
 		<dependency>

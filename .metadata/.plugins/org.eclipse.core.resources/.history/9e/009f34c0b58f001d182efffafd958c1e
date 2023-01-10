@@ -1,0 +1,6 @@
+package kr.go.molab.aop;
+
+@Aspect
+public class LogAdvisor {
+
+}

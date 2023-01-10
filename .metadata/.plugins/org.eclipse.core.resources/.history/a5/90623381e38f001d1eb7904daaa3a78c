@@ -1,0 +1,28 @@
+package kr.go.molab.controller;
+
+import org.springframework.stereotype.Controller;
+
+@Controller
+@RequestMapping("/user/")
+public class UserController {
+	@Autowired
+	AccountServiceImpl accountService;
+
+	@RequestMapping(value = "login", method = RequestMethod.GET)
+	public String goLogin() {
+		return "users/login";
+	}
+	
+	@RequestMapping(value = "join", method = RequestMethod.GET)
+	public String goJoin() {
+		return "users/join";
+	}
+	
+	@RequestMapping(value = "join", method = RequestMethod.POST)
+	public String join(Account account) {
+		account.setPassword(new BCryptPasswordEncoder().encode(account.getPassword()));
+		accountService.join(account);
+		return "users/login";
+	}
+
+}
