@@ -1,0 +1,52 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<title>채팅방</title>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+	<!-- JUA 폰트-->
+	<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+	<script src="${pageContext.request.contextPath }/resources/sockjs.0.3.4.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+</head>
+<body>
+    <!-- 채팅 창 -->
+    <div class="chatcontent">
+        
+    </div>
+    
+    <!-- 채팅 방 관련 -->
+    <script>
+    $(function() {
+
+    	var sock = new SockJS(
+    				"${pageContext.request.contextPath}/endpoint");
+    	var client = Stomp.over(sock);
+        
+        	client.connect({},function() {
+    			//메세지 들어오는곳 == 구독한 채팅 채널
+                //roomNo는 채팅창 접속하는 url에 get방식의 값으로 연결해줌
+                //ex)채팅url?roomNo=13 이면 jsp el태그로 ${roomNo}로 가져와서 사용
+    			client.subscribe('/subscribe/chat/'+ roomNo,function(chat) {
+    			//받은 데이터
+    			var content = JSON.parse(chat.body);
+    			//후에 받은 데이터를 html코드로 뿌려주면 됨					
+    			});
+                                
+           });
+
+    });
+    client.send('/app/hello/' + roomNo, {}, JSON
+			.stringify({
+				chatContent : message,
+				memberId : "${loginMember.memberId}"
+
+	}));
+    </script>
+</body>
+</html>

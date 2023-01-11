@@ -35,6 +35,12 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
+        /* 네이버아이디로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출 */
+        //String naverAuthUrl = naverLoginVO.getAuthorizationUrl(session);
+        //model.addAttribute("url", naverAuthUrl);
+        
+        //List<UserVO> userList = mainService.findUserList();
+        //model.addAttribute("userList", userList);
 		
 		return "home";
 	}

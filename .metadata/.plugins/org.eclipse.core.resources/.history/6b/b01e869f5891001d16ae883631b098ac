@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="board">
+    <insert id="insertBoard" parameterType="Board">
+        insert into board values (default, #{bWriter}, #{bPassword}, #{bPasswordEnc}, #{bSubject}, #{bContent}, default, default, default)
+    </insert>    
+    <select id="getBoardList" resultType="kr.go.molab.dto.Board">
+    	select * from board LIMIT #{startPage}, #{pageLimit}
+    </select>
+    <select id="getListCount" resultType="int">
+        select count(*) from board
+    </select>
+</mapper>

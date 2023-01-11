@@ -1,0 +1,38 @@
+package kr.go.molab.dao;
+
+import java.util.List;
+
+import org.apache.ibatis.session.RowBounds;
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import kr.go.molab.dto.Board;
+import kr.go.molab.util.PageInfo;
+
+@Repository
+public class BoardDao {
+
+	@Autowired
+	SqlSessionTemplate sqlSession;
+	
+	public void insertBoard(Board board) {
+		sqlSession.insert("board.insertBoard", board);
+	}
+
+	public List<Board> getBoardList(PageInfo paging) {
+        // ex) 현재페이지 5, 한 페이지에 보여질 게시글 수 10개
+        // 5 - 1 = 4,
+        // 4 * 10 = 40
+        int offset = (paging.getCurrentPage() - 1) * paging.getBoardLimit();
+        
+        RowBounds rowBounds = new RowBounds(offset, paging.getBoardLimit());
+        
+		return sqlSession.selectList("board.getBoardList", null, rowBounds);
+	}
+
+	public int getListCount() {
+		return sqlSession.selectOne("board.getListCount");
+	}
+
+}

@@ -1,0 +1,5 @@
+package kr.go.molab.service;
+
+public class BoardServiceImpl implements BoardService {
+
+}

@@ -1,0 +1,136 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<title>채팅 메인 화면</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<style>
+	/* 사이드바 스타일 */
+	.sidenav {
+	    height:100%;
+	    width: 0;
+	    position: fixed;
+	    z-index:1;
+	    top: 0;
+	    left: 0;
+	    background-color: #e60e45;
+	    overflow-x: hidden;
+	    transition:0.5s ease-in-out;
+	    padding-top: 60px;
+	}
+	.sidenav a {
+	    padding: 8px 8px 8px 32px;
+	    text-decoration: none;
+	    font-size: 25px;
+	    color: #fff;
+	    display: block;
+	    transition: 0.2s ease-in-out;
+	}
+	.sidenav a:hover, .offcanvas a:focus {
+	    color: #000;
+	}
+	.closebtn {
+	    position: absolute;
+	    top: 0;
+	    right: 25px;
+	    font-size: 36px !important;
+	    margin-left: 50px;
+	}
+	.openmenu:hover {
+	    color:rgb(0,154,200);
+	    transition:0.5s ease-in-out;
+	}
+	.openmenu {
+	    font-size: 25px;
+	    cursor:pointer;
+	    transition:0.5s ease-in-out;
+	}
+	.openmenu > i {
+	    font-size: 30px;
+	}
+	/* 미디어쿼리 적용 */
+	@media screen and (max-height:450px) {
+	    .sidenav {
+	        padding-top:15px;
+	    }
+	    .sidenav a {
+	        font-size: 18px;
+	    }
+	}
+	 
+	.letter {
+	    margin-left : 20px;
+	    border : 1px solid white;
+	    background-color : white;
+	    margin-bottom : 10px;
+	    display :inline-block;
+	    width : 300px;
+	    height : 150px;
+	}
+	.letter .header {
+	    background-color : #e60e45;
+	    font-color : white;
+	}
+	 
+	#mssage_send_btn {
+	    float : left;
+	    margin-top : -50px;
+	    margin-left : 10px;
+	    height :35px;
+	}
+	 
+	.msg_form .modal-body table tbody tr {
+	    margin-bottom : 20px;
+	}
+	</style>	
+	<script>
+	$(document).ready(function(){
+		function openNav() {
+	        document.getElementById('mysidenav').style.width = '350px';
+	        $.ajax({
+	            type:"post",
+	            dataType:"json",
+	            url:"/message/list.do",
+	            data :{
+	                receiver_name : $("#user_name").val(),
+	            },
+	            success:function(data){
+	                var i =1;
+	                var dataset = data.result;
+	                dataset.forEach(function(row){
+	                    if($("#"+i).length >0){
+	                    }else{
+	                        $("#mysidenav").append("<div id='"+row.view_check+"'class='letter'><div class='header'><p style='color:white;font-size:23px;margin-left: 20px;'>"+row.ms_title+"</p></div><table><tbody><tr><th>발송일자:  "+row.creat_dt+"</th><th>발송자: "+row.sender_name+"</th></tr>"+   
+	                                   "<tr><th>"+row.ms_content+"</th></tr></tbody></table><div class='footer'></div></div>");
+	                
+	                        if(row.read_yn ==0){
+	                                $("#"+i+" .footer").append("<input type='button' style='float:right;' id='letter_read' class='btn btn-danger' value='read'/>");
+	                        }
+	                        i++;    
+	                    }
+	                });
+	            }
+	        })
+	        if($("#mysidenav").css("width") =="350px")
+	            document.getElementById('mysidenav').style.width = '0';
+	            
+	    }
+	    function closeNav() {
+	        document.getElementById('mysidenav').style.width = '0';
+	    }
+
+	});
+	</script>
+</head>
+<body>
+	<span id="recMs" onclick="openNav()" name="recMs" style="float:right;cursor:pointer;margin-right:10px;color:pink;"><img src="../resources/images/msgicon.png" id="messageImage" style="opacity :0.3;width:15px;"></span>
+	<div id="mysidenav" class="sidenav">
+        <a href="#" class="closebtn" onclick='closeNav()'>x</a>
+        <div id="mssage_send_btn" name="mssage_send_btn" class="btn btn-warning"><p>쪽지 보내기</p></div>
+    </div>
+</body>
+</html>

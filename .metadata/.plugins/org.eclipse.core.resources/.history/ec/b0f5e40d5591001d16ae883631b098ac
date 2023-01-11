@@ -1,0 +1,29 @@
+package kr.go.molab.dao;
+
+import java.util.List;
+
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import kr.go.molab.dto.Board;
+
+@Repository
+public class BoardDao {
+
+	@Autowired
+	SqlSessionTemplate sqlSession;
+	
+	public void insertBoard(Board board) {
+		sqlSession.insert("board.insertBoard", board);
+	}
+
+	public List<Board> getBoardList() {
+		return sqlSession.selectList("board.getBoardList");
+	}
+
+	public int getListCount() {
+		return sqlSession.selectOne("board.getListCount");
+	}
+
+}

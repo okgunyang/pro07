@@ -1,0 +1,42 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<title>글 작성</title>
+</head>
+<body>
+	<form action="/board/write/complete" method="post">
+		<div class="row mb-3">
+			<div class="col-6 col-sm-3">
+				<label for="bWriter" class="form-label"><strong>작성자</strong></label>
+				<input type="text" class="form-control" id="bWriter" placeholder="작성자(6자리)" name="bWriter">
+			</div>
+			<div class="col-6 col-sm-3">
+				<label for="bPassword" class="form-label"><strong>비밀번호</strong></label>
+				<input type="password" class="form-control" id="bPassword" placeholder="비밀번호" name="bPassword">
+			</div>
+		</div>
+		<div class="row mb-3">
+			<div class="col">
+				<label for="bSubject" class="form-label"><strong>제목</strong></label>
+				<input type="text" class="form-control" id="bSubject" placeholder="제목을 입력해주세요. (16글자)" name="bSubject">				
+			</div>
+		</div>
+		<div class="row mb-3">
+			<div class="col">
+				<textarea id="summernote" style="resize:none" name="bContent"></textarea>				
+			</div>
+		</div>
+		<div class="row justify-content-end">
+			<div class="col text-end">
+				<button type="submit" class="btn btn-success me-1">글 작성</button>
+				<button type="button" class="btn btn-success" onclick="location.href='/board'">취소</button>
+			</div>
+		</div>
+	</form>
+</body>
+</html>

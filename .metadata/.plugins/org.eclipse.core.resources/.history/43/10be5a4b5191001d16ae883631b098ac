@@ -1,0 +1,19 @@
+package kr.go.molab.dao;
+
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import kr.go.molab.dto.Board;
+
+@Repository
+public class BoardDao {
+
+	@Autowired
+	SqlSessionTemplate sqlSession;
+	
+	public int insertBoard(Board board) {
+		return sqlSession.insert("board.insertBoard", board);
+	}
+
+}

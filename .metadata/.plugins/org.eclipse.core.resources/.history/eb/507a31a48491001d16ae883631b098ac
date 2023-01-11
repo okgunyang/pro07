@@ -1,0 +1,46 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<title>채팅 메인 화면</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script>
+	function sendMessage(form) {
+		// 작성자, 내용 유효성 검사
+		form.writer.value = form.writer.value.trim();
+		if (form.writer.value.length == 0) {
+			alert('작성자를 입력하세요');
+			form.writer.focus();
+			return false;
+		}
+		
+		form.body.value = form.body.value.trim();
+		if (form.body.value.length == 0) {
+			alert('내용 입력하세요');
+			form.body.focus();
+			return false;
+		}
+		// AJAX -> doAddMessage 실행 및 출력값 가져오기
+		$.post('./doAddMessage',{
+			writer : form.writer.value,
+			body : form.body.value
+		}, function(data) {
+			
+		},'json');
+		form.body.value = '';
+		form.body.focus();
+	}
+</script>
+</head>
+<body>
+	<span id="recMs" onclick="openNav()" name="recMs" style="float:right;cursor:pointer;margin-right:10px;color:pink;"><img src="../resources/images/msgicon.png" id="messageImage" style="opacity :0.3;width:15px;"></span>
+	<div id="mysidenav" class="sidenav">
+        <a href="#" class="closebtn" onclick='closeNav()'>x</a>
+        <div id="mssage_send_btn" name="mssage_send_btn" class="btn btn-warning"><p>쪽지 보내기</p></div>
+    </div>
+</body>
+</html>

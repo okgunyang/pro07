@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="user">
+    <insert id="insertUser">
+        insert into user values (#{userid}, #{passwd}, #{username}, #{email}, #{tel}, #{authority}, default, 1)
+    </insert>    
+    <select id="selectUser" resultType="java.util.Map">    
+        select * from user where userid=#{userid}
+        <!-- 매개변수로 입력된 userid를 받아 데이터베이스에서 해당 userid에 속한 레코드를 불러온다. -->
+        <!-- 검색된 레코드는 HashMap으로 저장이 되어 DAO로 보낸다.-->
+    </select>
+</mapper>

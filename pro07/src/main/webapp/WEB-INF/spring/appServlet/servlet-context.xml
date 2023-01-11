@@ -3,9 +3,11 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
-		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+	xmlns:websocket="http://www.springframework.org/schema/websocket"
+	xsi:schemaLocation="http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket-4.3.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
@@ -26,6 +28,8 @@
 	<resources mapping="/reservate/**" location="/WEB-INF/views/reservate" />
 	<resources mapping="/research/**" location="/WEB-INF/views/research" />
 	<resources mapping="/sample/**" location="/WEB-INF/views/sample" />
+	<resources mapping="/echo/**" location="/WEB-INF/views/echo" />
+	<resources mapping="/chat/**" location="/WEB-INF/views/chat" />
 
 	<!-- 뷰(.jsp)에 대한 접두사와 접미사 처리하여 반환할 때의 설정 : 뷰리졸버 설정 -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -43,7 +47,7 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="kr.go.molab" />
-	
+
 	<!-- <beans:bean id="springSecurityFilterChain" class="org.springframework.web.filter.DelegatingFilterProxy"/> -->	
 	<!-- 하단 또는 security에 인터셉터 추가 -->
 	<beans:bean id="sampleInterceptor" class="kr.go.molab.util.SampleInterceptor" />
@@ -68,4 +72,13 @@
         </interceptor>
 	</interceptors>
 	
+    <!-- 웹 소켓 핸들러 -->
+	<beans:bean id="echoHandler" class="kr.go.molab.chat.EchoHandler"/>	
+    <websocket:handlers>
+        <websocket:mapping path="/echo" handler="echoHandler"/>
+        <websocket:handshake-interceptors>
+        	<beans:bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor"/>
+        </websocket:handshake-interceptors>
+        <websocket:sockjs/>
+    </websocket:handlers>	
 </beans:beans>

@@ -12,3 +12,34 @@
 1673255901733	Rename resource 'ex_security-context.xml'
 1673255993564	Move file
 1673256001760	Rename resource 'AccountMapper.xml'
+1673341051378	Move compilation unit
+1673341131874	Move compilation unit
+1673341156759	Move compilation unit
+1673341197310	Rename type 'MessageController'
+1673345103526	Copy file
+1673397677248	Delete element
+1673397691467	Rename resource 'chat.jsp'
+1673398014100	Move compilation unit
+1673401556037	Rename resource 'notice'
+1673401814175	Rename type 'PageMaker'
+1673407218236	Delete element
+1673407223592	Delete element
+1673415864664	Copy files
+1673415942926	Delete elements
+1673415950539	Delete element
+1673415953393	Delete element
+1673415961186	Delete elements
+1673415971671	Delete elements
+1673415979852	Delete elements
+1673416920557	Delete elements
+1673418677514	Delete elements
+1673419426215	Rename resource 'chat'
+1673419484950	Delete elements
+1673419493442	Delete elements
+1673419688249	Rename resource 'chat.jsp'
+1673419692801	Rename resource 'dechat.jsp'
+1673419753924	Move file
+1673419758631	Rename resource 'chatting.jsp'
+1673419763393	Rename resource 'echo'
+1673420442441	Delete element
+1673424596364	Rename type 'MessageMapper'

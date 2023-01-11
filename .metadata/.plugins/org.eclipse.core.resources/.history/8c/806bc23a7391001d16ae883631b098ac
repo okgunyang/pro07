@@ -1,0 +1,18 @@
+package kr.go.molab.service;
+
+import java.util.List;
+
+import kr.go.molab.dto.Board;
+import kr.go.molab.util.PageInfo;
+
+public interface BoardService {
+
+	void insertBoard(Board board);
+
+	List<Board> getBoardList(PageInfo paging);
+
+	int getListCount();
+
+	Board selectBoard(int bNo);
+
+}

@@ -1,0 +1,37 @@
+package kr.go.molab.chat;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+@Controller
+public class ChatController {
+	private List<ChatMessageDto> messages;
+	
+	ChatController() {
+		messages = new ArrayList<>();
+	}
+	
+	@RequestMapping(value="/chat/main")
+	public String showMain() {
+		return "chat/main/";
+	}
+	
+	@RequestMapping(value="/chat/doAddMessage")
+	@ResponseBody
+	public Map doAddMessage(String writer, String body) {
+		int id = messages.size() + 1;
+		ChatMessageDto chatMessage = new ChatMessageDto(id, writer, body);
+		messages.add(chatMessage);
+		
+		Map<String, Object> rs = new HashMap<>();
+		return rs;
+	}
+	
+	
+}

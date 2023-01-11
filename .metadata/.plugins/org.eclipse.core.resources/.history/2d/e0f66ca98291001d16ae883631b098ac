@@ -1,0 +1,6 @@
+package kr.go.molab.chat;
+
+public interface MessageService {
+	public List<MessageVO> findList(String receiver_name);
+	public void insertMessage(MessageVO messageVO);
+}

@@ -1,0 +1,5 @@
+package kr.go.molab.dao;
+
+public class BoardDao {
+
+}

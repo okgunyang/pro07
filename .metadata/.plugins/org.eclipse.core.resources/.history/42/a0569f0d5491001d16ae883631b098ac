@@ -1,0 +1,42 @@
+package kr.go.molab.chat;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import kr.go.molab.dto.Board;
+import kr.go.molab.service.BoardService;
+
+@Controller
+public class BoardController {
+	
+	@Autowired
+	private BoardService service;
+	
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	
+	@GetMapping("/board/list")
+	public String BoardList(Model model) {
+		List<Board> boardList = service.getBoardList();
+		System.out.println(boardList);
+		model.addAttribute("boardList", boardList);
+		return "board/list";
+	}
+	
+	@PostMapping("/board/write/complete")
+	public String insertBoard(Board board, Model model) {
+		System.out.println(board.toString());
+		
+		board.setbPasswordEnc(board.getbPassword());
+		service.insertBoard(board);
+		
+		return "redirect:/board/list";
+	}
+	
+}

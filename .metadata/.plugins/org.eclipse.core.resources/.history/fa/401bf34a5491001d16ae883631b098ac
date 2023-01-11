@@ -1,0 +1,34 @@
+package kr.go.molab.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import kr.go.molab.dao.BoardDao;
+import kr.go.molab.dto.Board;
+
+@Service
+public class BoardServiceImpl implements BoardService {
+
+	@Autowired
+	BoardDao dao;
+	
+	
+	
+	@Override
+	public List<Board> getBoardList() {
+		return dao.getBoardList();
+	}
+
+	@Override
+	public int getListCount() {
+		return 0;
+	}
+
+	@Override
+	public void insertBoard(Board board) {
+		dao.insertBoard(board);
+	}
+
+}

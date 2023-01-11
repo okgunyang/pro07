@@ -1,0 +1,16 @@
+package kr.go.molab.security;
+
+@Controller
+public class ChatController {
+
+	// 채팅 메세지 전달
+    @MessageMapping("/hello/{roomNo}")
+    @SendTo("/subscribe/chat/{roomNo}")
+    public Chat broadcasting(Chat chat) {
+ 	
+        chat.setSendDate(new Date());
+        
+        return chat;
+    }
+    
+}

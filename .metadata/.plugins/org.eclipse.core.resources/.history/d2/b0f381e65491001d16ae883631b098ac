@@ -1,0 +1,57 @@
+package kr.go.molab.chat;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import kr.go.molab.dto.Board;
+import kr.go.molab.service.BoardService;
+import kr.go.molab.util.PageInfo;
+import kr.go.molab.util.Pagination;
+
+@Controller
+public class BoardController {
+	
+	@Autowired
+	private BoardService service;
+	
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	
+	@GetMapping("/board/list")
+	public String BoardList(Model model, @RequestParam(value="currentPage", // 태그의 name값
+            required = false,       // 파라미터 필수 입력 여부
+            defaultValue = "1"   // null값 → 1 [ required=true일 시, 400에러 ]
+           )int currentPage) {
+		List<Board> boardList = service.getBoardList();
+		
+        // 게시글 총 갯수
+        int listCount = service.getListCount();
+        System.out.println("총 게시글 수  : " + listCount);
+        
+        // 클릭한 페이지, 총 게시글 수 전달
+        PageInfo paging = Pagination.getPageInfo(currentPage, listCount);
+        
+		System.out.println(boardList);
+		model.addAttribute("boardList", boardList);
+        model.addAttribute("paging", paging);
+		return "board/list";
+	}
+	
+	@PostMapping("/board/write/complete")
+	public String insertBoard(Board board, Model model) {
+		System.out.println(board.toString());
+		
+		board.setbPasswordEnc(board.getbPassword());
+		service.insertBoard(board);
+		
+		return "redirect:/board/list";
+	}
+	
+}

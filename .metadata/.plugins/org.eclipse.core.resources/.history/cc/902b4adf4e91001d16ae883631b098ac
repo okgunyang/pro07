@@ -1,0 +1,18 @@
+package kr.go.molab.chat;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import kr.go.molab.dto.Board;
+
+@Controller
+public class BoardController {
+	
+	@PostMapping("/board/write/complete")
+	public String insertBoard(Board board, Model model) {
+		System.out.println(board.toString());
+		return "redirect:/board/list";
+	}
+	
+}

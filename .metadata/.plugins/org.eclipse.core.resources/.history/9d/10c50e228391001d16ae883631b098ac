@@ -1,0 +1,12 @@
+package kr.go.molab.chat;
+
+public class MessageVO {
+	private String ms_title;
+	private String receiver_name;
+	private int gubun;
+	private String creat_dt;
+	private String ms_content;
+	private String sender_name;
+	private String user_id;
+	private int read_yn;
+}

@@ -1,0 +1,26 @@
+package kr.go.molab.chat;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import kr.go.molab.dto.Board;
+import kr.go.molab.service.BoardService;
+
+@Controller
+public class BoardController {
+	
+	@Autowired
+	private BoardService service;
+	
+	@PostMapping("/board/write/complete")
+	public String insertBoard(Board board, Model model) {
+		System.out.println(board.toString());
+		
+		board.setbPasswordEnc(board.getbPassword());
+		int result = service.insertBoard(board);
+		return "redirect:/board/list";
+	}
+	
+}

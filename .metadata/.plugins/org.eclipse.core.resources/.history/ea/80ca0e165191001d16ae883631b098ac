@@ -1,0 +1,9 @@
+package kr.go.molab.service;
+
+import kr.go.molab.dto.Board;
+
+public interface BoardService {
+
+	int insertBoard(Board board);
+
+}

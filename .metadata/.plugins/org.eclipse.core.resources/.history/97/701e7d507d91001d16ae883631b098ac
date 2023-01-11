@@ -1,0 +1,21 @@
+package kr.go.molab.chat;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class ChatController {
+	private List<ChatMessageDto> messages;
+	
+	ChatController() {
+		messages = new ArrayList<>();
+	}
+	
+	@RequestMapping(value="/chat/main")
+	public String showMain() {
+		return "chat/main/";
+	}
+}

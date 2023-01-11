@@ -1,0 +1,5 @@
+package kr.go.molab.config;
+
+public class WebSocketConfig {
+
+}
